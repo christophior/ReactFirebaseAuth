@@ -1,5 +1,5 @@
-import React from 'react'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router' 
+import React, { Component } from 'react';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import requireAuth from '../utils/requireAuth'
 
 import Main from '../components/Main'
@@ -10,10 +10,10 @@ import DashboardContainer from '../containers/DashboardContainer'
 import ForgotPasswordContainer from '../containers/ForgotPasswordContainer'
 
 const routes = (
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path='/' component={Main}>
 			<IndexRoute component={Home} />
-			<Route path='dashboard' component={DashboardContainer} onEnter={requireAuth}/>
+			<Route path='dashboard' component={DashboardContainer} onEnter={requireAuth} />
 			<Route path='logout' component={Logout} />
 			<Route path='forgotpassword' component={ForgotPasswordContainer} />
 		</Route>

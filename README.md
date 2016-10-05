@@ -8,7 +8,7 @@ Currently using:
 
 **React Router 2.0.X**
 
-**Firebase 3.2.X**
+**Firebase 3.4.X**
 
 
 ## Instructions
@@ -18,16 +18,16 @@ cd ReactFirebaseAuth
 npm install
 ```
 
-once everything is installed just go to `/app/utils/firebaseUtils.js`
-and update the following chunk of code:
+once everything is installed just go to `/firebase.config.js`
+and update the config:
 
 ```javascript
-let firebaseInstance = firebase.initializeApp({
-		apiKey: "xxxxxxxxxx",
-		authDomain: "xxxxxxxxxx",
-		databaseURL: "xxxxxxxxxx",
-		storageBucket: "xxxxxxxxxx"
-	});
+module.exports = {
+	apiKey: "",
+	authDomain: "",
+	databaseURL: "",
+	storageBucket: "",
+}
 ```
 
 with your project information from the Firebase console

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import UserForm from '../components/UserForm'
-import firebaseUtils from '../utils/firebaseUtils'
+import * as firebase from 'firebase'
 
 const SignUpContainer = React.createClass({
 	contextTypes: {
@@ -24,19 +24,19 @@ const SignUpContainer = React.createClass({
 			errorMessage: ''
 		});
 
-		firebaseUtils.signup(email, password, function (message) {
-			if (message) {
-				console.log('Sign up err: ', message);
-				this.setState({
-					errorMessage: message
-				});
-			} else {
+		firebase.auth().createUserWithEmailAndPassword(email, password)
+			.then(() => {
 				console.log('Sign up complete, redirect!');
 				this.context.router.push({
 					pathname: '/dashboard'
 				});
-			}
-		}.bind(this));
+			})
+			.catch((error) => {
+				console.log('Sign up err: ', error.message);
+				this.setState({
+					errorMessage: error.message
+				});
+			});
 	},
 	handleUpdateEmail (e) {
 		this.setState({

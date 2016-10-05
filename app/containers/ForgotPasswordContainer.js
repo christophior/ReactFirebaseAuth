@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import EmailForm from '../components/EmailForm'
-import firebaseUtils from '../utils/firebaseUtils'
+import * as firebase from 'firebase'
 
 const ForgotPasswordContainer = React.createClass({
 	contextTypes: {
@@ -23,19 +23,19 @@ const ForgotPasswordContainer = React.createClass({
 			errorMessage: ''
 		});
 
-		firebaseUtils.resetPassword(email, function (message) {
-			if (message) {
-				console.log('Forgot password err: ', message);
-				this.setState({
-					errorMessage: message
-				});
-			} else {
+		firebase.auth().sendPasswordResetEmail(email)
+			.then(() => {
 				console.log('Forgot password complete!');
 				this.setState({
 					successMessage: 'Please check your email to reset your password!'
 				});
-			}
-		}.bind(this));
+			})
+			.catch((error) => {
+				console.log('Forgot password err: ', error.message);
+				this.setState({
+					errorMessage: error.message
+				});
+			});
 	},
 	handleUpdateEmail (e) {
 		this.setState({

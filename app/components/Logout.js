@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router'
-import firebaseUtils from '../utils/firebaseUtils'
+import * as firebase from 'firebase'
 
 const Logout = React.createClass({
 	componentDidMount () {
-		firebaseUtils.logout();
+		firebase.auth().signOut();
 	},
 	render () {
 		return (

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import UserForm from '../components/UserForm'
-import firebaseUtils from '../utils/firebaseUtils'
+import * as firebase from 'firebase'
 import { Link } from 'react-router'
 
 const LoginContainer = React.createClass({
@@ -25,19 +25,19 @@ const LoginContainer = React.createClass({
 			errorMessage: ''
 		});
 
-		firebaseUtils.login(email, password, function (message) {
-			if (message) {
-				console.log('Login err: ', message);
-				this.setState({
-					errorMessage: message
-				});
-			} else {
+		firebase.auth().signInWithEmailAndPassword(email, password)
+			.then(() => {
 				console.log('Login complete, redirect!');
 				this.context.router.push({
 					pathname: '/dashboard'
 				});
-			}	
-		}.bind(this));
+			})
+			.catch((error) => {
+				console.log('Login err: ', error.message);
+				this.setState({
+					errorMessage: error.message
+				});
+			});
 	},
 	handleUpdateEmail (e) {
 		this.setState({

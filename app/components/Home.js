@@ -2,17 +2,22 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import LoginContainer from '../containers/LoginContainer'
 import SignUpContainer from '../containers/SignUpContainer'
-import firebaseUtils from '../utils/firebaseUtils'
+import * as firebase from 'firebase'
 
 const Home = React.createClass({
 	getInitialState () {
 		return {
-			isLoggedIn: false
+			isLoggedIn: (null !== firebase.auth().currentUser)
 		}
 	},
 	componentDidMount () {
-		this.setState({
-			isLoggedIn: firebaseUtils.isLoggedIn()
+		firebase.auth().onAuthStateChanged(firebaseUser => {
+			if (this.isMounted()) { // this is bad :/
+				this.setState({
+					isLoggedIn: (null !== firebaseUser)
+				});
+			}
+			console.log('Are we logged in? ', null !== firebaseUser);
 		});
 	},
 	render () {
