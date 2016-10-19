@@ -1,0 +1,6 @@
+{
+  "name": "React/Firebase Auth Starter",
+  "tagline": "Starter React App using Firebase with basic authentication set up",
+  "body": "# React Firebase Authentication Starter\r\n\r\nQuick starter code to get a simple react application with basic authentication using Firebase up and running\r\n\r\nCurrently using:\r\n\r\n**React 0.14.X**\r\n\r\n**React Router 2.0.X**\r\n\r\n**Firebase 3.4.X**\r\n\r\n\r\n## Instructions\r\n```\r\ngit clone https://github.com/christophior/ReactFirebaseAuth.git\r\ncd ReactFirebaseAuth\r\nnpm install\r\n```\r\n\r\nonce everything is installed just go to `/firebase.config.js`\r\nand update the config:\r\n\r\n```javascript\r\nmodule.exports = {\r\n\tapiKey: \"\",\r\n\tauthDomain: \"\",\r\n\tdatabaseURL: \"\",\r\n\tstorageBucket: \"\",\r\n}\r\n```\r\n\r\nwith your project information from the Firebase console\r\nhttps://console.firebase.google.com/\r\n\r\nRun!\r\n```\r\nnpm start\r\n// navigate to localhost:8000\r\n```",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
